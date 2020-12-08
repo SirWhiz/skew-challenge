@@ -5,12 +5,12 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	private final static String URL = "wss://ws.bitstamp.net";
 
 	public static void main(String[] args) {
 		System.out.println("Starting..");
-		
+
 		SocketApp c;
 		try {
 			c = new SocketApp(new URI(URL));
@@ -18,8 +18,8 @@ public class Main {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		
+
 		new Scanner(System.in).nextLine();
 	}
-	
+
 }
