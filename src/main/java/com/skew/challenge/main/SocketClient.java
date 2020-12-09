@@ -25,6 +25,7 @@ import static com.skew.challenge.constants.Constants.BITSTAMP_BTC_USD;
 import static com.skew.challenge.constants.Constants.BITSTAMP_BTC_GBP;
 import static com.skew.challenge.constants.Constants.BITSTAMP_ETH_USD;
 import static com.skew.challenge.constants.Constants.BITSTAMP_LTC_USD;
+import static com.skew.challenge.constants.Constants.CSV_FILE_NAME;
 
 public class SocketClient extends WebSocketClient {
 
@@ -74,6 +75,7 @@ public class SocketClient extends WebSocketClient {
 
 	@Override
 	public void onClose(int code, String reason, boolean remote) {
+		System.out.println("Order book information was saved to " + CSV_FILE_NAME);
 	}
 
 	@Override
