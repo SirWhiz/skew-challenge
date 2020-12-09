@@ -2,24 +2,19 @@ package com.skew.challenge.main;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Scanner;
+
+import static com.skew.challenge.constants.Constants.BITSTAMP_URL;
 
 public class Main {
 
-	private final static String URL = "wss://ws.bitstamp.net";
-
 	public static void main(String[] args) {
-		System.out.println("Starting..");
-
-		SocketApp c;
+		SocketClient c;
 		try {
-			c = new SocketApp(new URI(URL));
+			c = new SocketClient(new URI(BITSTAMP_URL));
 			c.connect();
 		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			System.out.println("There was an error trying to connect to " + BITSTAMP_URL);
 		}
-
-		new Scanner(System.in).nextLine();
 	}
 
 }

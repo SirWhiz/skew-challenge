@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderBook {
-	
+
 	private String exchange;
 	private String symbol;
 	private List<Order> bids;
@@ -51,6 +51,17 @@ public class OrderBook {
 	@Override
 	public String toString() {
 		return "OrderBook [exchange=" + exchange + ", symbol=" + symbol + ", bids=" + bids + ", asks=" + asks + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((asks == null) ? 0 : asks.hashCode());
+		result = prime * result + ((bids == null) ? 0 : bids.hashCode());
+		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
+		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
+		return result;
 	}
 	
 }
