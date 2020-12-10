@@ -27,32 +27,32 @@ public class FileServiceTest {
 		String generatedCSVLine = "1607605437435,BTC/USD,2.0,18226.44,18233.0,0.11741774";
 		String fixedTimestamp = "1607605437435";
 		OrderBook book = new OrderBook();
-		
-		//Empty the content of the file if exist
+
+		// Empty the content of the file if exist
 		new PrintWriter(CSV_FILE_NAME).close();
-		
-		book = new ObjectMapper().readValue(exampleBookJson, OrderBook.class);		
+
+		book = new ObjectMapper().readValue(exampleBookJson, OrderBook.class);
 		new FileService(book, fixedTimestamp).run();
-		
+
 		lock.await(500, TimeUnit.MILLISECONDS);
 		List<String> lines = readFile();
 
-        assertEquals(1, lines.size());
-        assertEquals(generatedCSVLine, lines.get(0));
+		assertEquals(1, lines.size());
+		assertEquals(generatedCSVLine, lines.get(0));
 	}
-	
+
 	private List<String> readFile() throws Exception {
-        BufferedReader br = null;
-        List<String> lines = new ArrayList<String>();
-        String line = "";
-        
-        br = new BufferedReader(new FileReader(CSV_FILE_NAME));
-        while ((line = br.readLine()) != null) {
-            lines.add(line);
-        }
-        br.close();
-        
-        return lines;
+		BufferedReader br = null;
+		List<String> lines = new ArrayList<String>();
+		String line = "";
+
+		br = new BufferedReader(new FileReader(CSV_FILE_NAME));
+		while ((line = br.readLine()) != null) {
+			lines.add(line);
+		}
+		br.close();
+
+		return lines;
 	}
-	
+
 }
