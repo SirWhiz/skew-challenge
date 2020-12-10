@@ -54,14 +54,29 @@ public class OrderBook {
 	}
 	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((asks == null) ? 0 : asks.hashCode());
-		result = prime * result + ((bids == null) ? 0 : bids.hashCode());
-		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
-		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		
+		if(o instanceof OrderBook == false) {
+			return false;
+		}
+		
+		OrderBook book = (OrderBook) o;
+		return this.getExchange().equals(book.getExchange()) && this.getSymbol().equals(book.getSymbol())
+				&& ordersAreEqual(this.getAsks(), book.getAsks()) && ordersAreEqual(this.getBids(), book.getBids());
+	}
+	
+	private boolean ordersAreEqual(List<Order> orders, List<Order> newOrders) {
+		if(orders.size() != newOrders.size()) {
+			return false;
+		}
+		
+		for (int i = 0; i < orders.size(); i++) {
+			if(!orders.get(i).getPrice().equals(newOrders.get(i).getPrice())
+					|| !orders.get(i).getQuantity().equals(newOrders.get(i).getQuantity())) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }

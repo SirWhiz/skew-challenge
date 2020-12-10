@@ -60,7 +60,7 @@ public class SocketClient extends WebSocketClient {
 			if(booksService.getAmountOfBooks() == BOOKS_LEVELS) {
 				this.close();
 			}
-			
+
 			BitstampResponsePayload data = new ObjectMapper().readValue(message, BitstampResponsePayload.class);
 			booksService.parseOrderBook(data);
 		} catch (JsonParseException e) {
